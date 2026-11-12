@@ -74,6 +74,16 @@ hbtransform(XftGlyphFontSpec *specs, const Glyph *glyphs, size_t len, int x, int
 {
 	int start = 0, length = 1, gstart = 0;
 	hb_codepoint_t *codepoints = calloc((unsigned int)len, sizeof(hb_codepoint_t));
+	int specidx = 0;
+
+	if (codepoints == NULL)
+		die("Failed to allocate Harfbuzz codepoint buffer.");
+
+	for (int i = 0; i < len; i++) {
+		if (glyphs[i].mode & ATTR_WDUMMY)
+			continue;
+		codepoints[i] = specs[specidx++].glyph;
+	}
 
 	for (int idx = 1, specidx = 1; idx < len; idx++) {
 		if (glyphs[idx].mode & ATTR_WDUMMY) {
@@ -123,30 +133,49 @@ hbtransformsegment(XftFont *xfont, const Glyph *string, hb_codepoint_t *codepoin
 	if (font == NULL)
 		return;
 
-	Rune rune;
-	ushort mode = USHRT_MAX;
+	hb_codepoint_t *runes;
+	hb_codepoint_t space;
+	unsigned int infolen, i;
+	unsigned int lastcluster = 0;
+	int valid = 1;
 	hb_buffer_t *buffer = hb_buffer_create();
 	hb_buffer_set_direction(buffer, HB_DIRECTION_LTR);
 
-	/* Fill buffer with codepoints. */
-	for (int i = start; i < (start+length); i++) {
-		rune = string[i].u;
-		mode = string[i].mode;
-		if (mode & ATTR_WDUMMY)
-			rune = 0x0020;
-		hb_buffer_add_codepoints(buffer, &rune, 1, 0, 1);
+	runes = calloc((unsigned int)length, sizeof(hb_codepoint_t));
+	if (runes == NULL)
+		die("Failed to allocate Harfbuzz input buffer.");
+	for (i = 0; i < (unsigned int)length; i++) {
+		runes[i] = string[start + i].mode & ATTR_WDUMMY
+			? 0x0020 : string[start + i].u;
 	}
+	hb_buffer_add_codepoints(buffer, runes, length, 0, length);
+	free(runes);
+	hb_buffer_guess_segment_properties(buffer);
 
 	/* Shape the segment. */
-	hb_shape(font, buffer, features, sizeof(features));
+	hb_shape(font, buffer, features, sizeof(features) / sizeof(features[0]));
 
-	/* Get new glyph info. */
-	hb_glyph_info_t *info = hb_buffer_get_glyph_infos(buffer, NULL);
+	/* Map shaped glyphs back to terminal cells without reading past the
+	 * shaped output when a ligature consumes multiple input characters. */
+	hb_glyph_info_t *info = hb_buffer_get_glyph_infos(buffer, &infolen);
+	for (i = 0; i < infolen; i++) {
+		if (info[i].cluster >= (unsigned int)length ||
+		    (i > 0 && info[i].cluster <= lastcluster)) {
+			valid = 0;
+			break;
+		}
+		lastcluster = info[i].cluster;
+	}
+	if (infolen > (unsigned int)length)
+		valid = 0;
 
-	/* Write new codepoints. */
-	for (int i = 0; i < length; i++) {
-		hb_codepoint_t gid = info[i].codepoint;
-		codepoints[start+i] = gid;
+	if (valid) {
+		if (!hb_font_get_nominal_glyph(font, 0x0020, &space))
+			space = 0;
+		for (i = 0; i < (unsigned int)length; i++)
+			codepoints[start + i] = space;
+		for (i = 0; i < infolen; i++)
+			codepoints[start + info[i].cluster] = info[i].codepoint;
 	}
 
 	/* Cleanup. */

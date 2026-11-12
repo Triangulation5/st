@@ -5,9 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Iosevka Nerd Font Mono:size=16:style=Regular:hintstyle=hintslight:rgba=rgb:lcdfilter=lcddefault:antialias=true:autohint=true";
+static char *font = "JetBrainsMono Nerd Font Mono:size=14:style=Regular:hintstyle=hintslight:rgba=none:antialias=true:autohint=true";
 static char *font2[] = { "Noto Color Emoji:pixelsize=11:antialias=true:autohint=false" };
-static int borderpx = 1;
+static int borderpx = 0;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -111,7 +111,7 @@ float alpha = 1.00;
 float alphaOffset = 0.0;
 float alphaUnfocus;
 
-/* Terminal colors (16 first used in escape sequence) */
+/* Kitty palette, hardcoded to match ~/.config/kitty/kitty.conf. */
 static const char *colorname[] = {
 	"#252530", /* 0: black */
 	"#d8647e", /* 1: red */
@@ -135,6 +135,8 @@ static const char *colorname[] = {
 	"#606079", /* 257 -> reverse cursor */
 	"#141415", /* 258 -> bg */
 	"#cdcdcd", /* 259 -> fg */
+	"#252530", /* 260 -> selection bg */
+	"#cdcdcd", /* 261 -> selection fg */
 };
 
 
@@ -147,6 +149,8 @@ unsigned int defaultbg = 258;
 unsigned int defaultcs = 256;
 unsigned int defaultrcs = 257;
 unsigned int background = 258;
+unsigned int selectionbg = 260;
+unsigned int selectionfg = 261;
 
 /*
  * Default shape of cursor
@@ -190,25 +194,6 @@ static uint forcemousemod = ShiftMask;
 ResourcePref resources[] = {
 		{ "font",         STRING,  &font },
 		{ "fontalt0",     STRING,  &font2[0] },
-		{ "color0",       STRING,  &colorname[0] },
-		{ "color1",       STRING,  &colorname[1] },
-		{ "color2",       STRING,  &colorname[2] },
-		{ "color3",       STRING,  &colorname[3] },
-		{ "color4",       STRING,  &colorname[4] },
-		{ "color5",       STRING,  &colorname[5] },
-		{ "color6",       STRING,  &colorname[6] },
-		{ "color7",       STRING,  &colorname[7] },
-		{ "color8",       STRING,  &colorname[8] },
-		{ "color9",       STRING,  &colorname[9] },
-		{ "color10",      STRING,  &colorname[10] },
-		{ "color11",      STRING,  &colorname[11] },
-		{ "color12",      STRING,  &colorname[12] },
-		{ "color13",      STRING,  &colorname[13] },
-		{ "color14",      STRING,  &colorname[14] },
-		{ "color15",      STRING,  &colorname[15] },
-		{ "background",   STRING,  &colorname[258] },
-		{ "foreground",   STRING,  &colorname[259] },
-		{ "cursorColor",  STRING,  &colorname[256] },
 		{ "termname",     STRING,  &termname },
 		{ "shell",        STRING,  &shell },
 		{ "minlatency",   INTEGER, &minlatency },

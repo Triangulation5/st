@@ -21,10 +21,9 @@ features that make it literally the best terminal emulator ever:
 
 ## Pretty stuff
 
-+ Compatibility with `Xresources` and `pywal` for dynamic colors.
-+ Default [vague](https://github.com/vague-theme/vague.nvim) colors.
++ Kitty-matched ANSI colors, hardcoded in `config.h`.
 + Transparency/alpha, which is also adjustable from your `Xresources`.
-+ Default font is system "JetBrainsMono" at 16pt.
++ Default font is JetBrainsMono Nerd Font Mono at 14pt.
 
 ## Other st patches
 
@@ -56,17 +55,15 @@ want transparency.
 
 ## How to configure dynamically with Xresources
 
-For many key variables, this build of `st` will look for X settings set in
-either `~/.Xdefaults` or `~/.Xresources`. You must run `xrdb` on one of these
-files to load the settings.
+Font and opacity settings can be read from `~/.Xdefaults` or `~/.Xresources`.
+Run `xrdb` on one of these files to load the settings. The terminal palette is
+hardcoded in `config.h` and is not overridden by Xresources or pywal.
 
-For example, you can define your desired fonts, transparency or colors:
+For example, you can define your desired font and transparency:
 
 ```
 *.font:	Liberation Mono:pixelsize=12:antialias=true:autohint=true;
 *.alpha: 0.9
-*.color0: #111
-...
 ```
 
 The `alpha` value (for transparency) goes from `0` (transparent) to `1`
@@ -76,13 +73,10 @@ The `alpha` value (for transparency) goes from `0` (transparent) to `1`
 
 To be clear about the color settings:
 
-- This build will use gruvbox colors by default and as a fallback.
-- If there are Xresources colors defined, those will take priority.
-- But if `wal` has run in your session, its colors will take priority.
+- The Kitty palette is hardcoded in `config.h`.
+- Xresources and pywal do not override the terminal colors.
 
-Note that when you run `wal`, it will negate the transparency of existing
-windows, but new windows will continue with the previously defined
-transparency.
+Opacity remains configurable through Xresources.
 
 ## Credits
 
