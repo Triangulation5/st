@@ -1,0 +1,150 @@
+!! Transparency (0-1):
+st.alpha: 0.92
+st.alphaOffset: 0.0
+
+!! Fonts (same as config.h):
+st.font: Iosevka Nerd Font Mono:size=16:style=Regular:hintstyle=hintslight:rgba=rgb:lcdfilter=lcddefault:antialias=true:autohint=true
+st.fontalt0: Noto Color Emoji:pixelsize=11:antialias=true:autohint=false
+
+! st.termname: st-256color
+st.borderpx: 1
+
+!! Set the background, foreground and cursor colors as below:
+
+!! vague:
+*.color0:  #252530
+*.color1:  #d8647e
+*.color2:  #7fa563
+*.color3:  #f3be7c
+*.color4:  #6e94b2
+*.color5:  #bb9dbd
+*.color6:  #aeaed1
+*.color7:  #cdcdcd
+*.color8:  #606079
+*.color9:  #e08398
+*.color10: #99b782
+*.color11: #f5cb96
+*.color12: #8ba9c1
+*.color13: #c9b1ca
+*.color14: #bebeda
+*.color15: #d7d7d7
+*.background:  #141415
+*.foreground:  #cdcdcd
+*.cursorColor: #cdcdcd
+
+/* /1* !! gruvbox light: *1/ */
+/* *.color0: #fbf1c7 */
+/* *.color1: #cc241d */
+/* *.color2: #98971a */
+/* *.color3: #d79921 */
+/* *.color4: #458588 */
+/* *.color5: #b16286 */
+/* *.color6: #689d6a */
+/* *.color7: #7c6f64 */
+/* *.color8: #928374 */
+/* *.color9: #9d0006 */
+/* *.color10: #79740e */
+/* *.color11: #b57614 */
+/* *.color12: #076678 */
+/* *.color13: #8f3f71 */
+/* *.color14: #427b58 */
+/* *.color15: #3c3836 */
+/* *.background: #fbf1c7 */
+/* *.foreground: #282828 */
+/* *.cursorColor: #282828 */
+
+/* !! brogrammer: */
+/* *.foreground:  #d6dbe5 */
+/* *.background:  #131313 */
+/* *.color0:      #1f1f1f */
+/* *.color8:      #d6dbe5 */
+/* *.color1:      #f81118 */
+/* *.color9:      #de352e */
+/* *.color2:      #2dc55e */
+/* *.color10:     #1dd361 */
+/* *.color3:      #ecba0f */
+/* *.color11:     #f3bd09 */
+/* *.color4:      #2a84d2 */
+/* *.color12:     #1081d6 */
+/* *.color5:      #4e5ab7 */
+/* *.color13:     #5350b9 */
+/* *.color6:      #1081d6 */
+/* *.color14:     #0f7ddb */
+/* *.color7:      #d6dbe5 */
+/* *.color15:     #ffffff */
+/* *.colorBD:     #d6dbe5 */
+
+/* ! base16 */
+/* *.color0:       #181818 */
+/* *.color1:       #ab4642 */
+/* *.color2:       #a1b56c */
+/* *.color3:       #f7ca88 */
+/* *.color4:       #7cafc2 */
+/* *.color5:       #ba8baf */
+/* *.color6:       #86c1b9 */
+/* *.color7:       #d8d8d8 */
+/* *.color8:       #585858 */
+/* *.color9:       #ab4642 */
+/* *.color10:      #a1b56c */
+/* *.color11:      #f7ca88 */
+/* *.color12:      #7cafc2 */
+/* *.color13:      #ba8baf */
+/* *.color14:      #86c1b9 */
+/* *.color15:      #f8f8f8 */
+
+/* !! solarized */
+/* *.color0:	#073642 */
+/* *.color1:	#dc322f */
+/* *.color2:	#859900 */
+/* *.color3:	#b58900 */
+/* *.color4:	#268bd2 */
+/* *.color5:	#d33682 */
+/* *.color6:	#2aa198 */
+/* *.color7:	#eee8d5 */
+/* *.color9:	#cb4b16 */
+/* *.color8:	#fdf6e3 */
+/* *.color10:	#586e75 */
+/* *.color11:	#657b83 */
+/* *.color12:	#839496 */
+/* *.color13:	#6c71c4 */
+/* *.color14:	#93a1a1 */
+/* *.color15:	#fdf6e3 */
+
+/* !! xterm */
+/* *.color0:   #000000 */
+/* *.color1:   #cd0000 */
+/* *.color2:   #00cd00 */
+/* *.color3:   #cdcd00 */
+/* *.color4:   #0000cd */
+/* *.color5:   #cd00cd */
+/* *.color6:   #00cdcd */
+/* *.color7:   #e5e5e5 */
+/* *.color8:   #4d4d4d */
+/* *.color9:   #ff0000 */
+/* *.color10:  #00ff00 */
+/* *.color11:  #ffff00 */
+/* *.color12:  #0000ff */
+/* *.color13:  #ff00ff */
+/* *.color14:  #00ffff */
+/* *.color15:  #aabac8 */
+
+/* !! solid colors */
+/* *.color0:   #000000 */
+/* *.color1:   #7f0000 */
+/* *.color2:   #007f00 */
+/* *.color3:   #7f7f00 */
+/* *.color4:   #00007f */
+/* *.color5:   #7f007f */
+/* *.color6:   #007f7f */
+/* *.color7:   #7f7f7f */
+/* *.color8:   #7f7f7f */
+/* *.color9:   #ff0000 */
+/* *.color10:  #00ff00 */
+/* *.color11:  #ffff00 */
+/* *.color12:  #0000ff */
+/* *.color13:  #ff00ff */
+/* *.color14:  #00ffff */
+/* *.color15:  #ffffff */
+/* *.background: black */
+/* *.foreground: white */
+/* *.cursorColor: white */

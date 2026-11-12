@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ -n "${WAYLAND_DISPLAY:-}" ] && command -v wl-copy >/dev/null 2>&1; then
+	exec wl-copy
+elif command -v xclip >/dev/null 2>&1; then
+	exec xclip -selection clipboard
+elif command -v xsel >/dev/null 2>&1; then
+	exec xsel --clipboard --input
+elif command -v wl-copy >/dev/null 2>&1; then
+	exec wl-copy
+fi
+
+printf "st-clipboard: install wl-clipboard, xclip, or xsel to copy text\\n" >&2
+exit 127
