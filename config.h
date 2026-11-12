@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMono Nerd Font Mono:size=14:style=Regular:hintstyle=hintslight:rgba=none:antialias=true:autohint=true";
+static char *font = "JetBrainsMono Nerd Font Mono:size=14:style=Regular:hintstyle=hintfull:rgba=none:antialias=true:autohint=true";
 static char *font2[] = { "Noto Color Emoji:pixelsize=11:antialias=true:autohint=false" };
 static int borderpx = 0;
 
@@ -132,7 +132,7 @@ static const char *colorname[] = {
 	[255] = 0,
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cdcdcd", /* 256 -> cursor */
-	"#606079", /* 257 -> reverse cursor */
+	"#141415", /* 257 -> reverse cursor text */
 	"#141415", /* 258 -> bg */
 	"#cdcdcd", /* 259 -> fg */
 	"#252530", /* 260 -> selection bg */
