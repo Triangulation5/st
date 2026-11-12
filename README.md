@@ -86,4 +86,4 @@ transparency.
 
 ## Credits
 
-Luke Smith <github.com/lukesmithxyz>
+[Luke Smith](github.com/lukesmithxyzs)
